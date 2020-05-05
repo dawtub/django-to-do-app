@@ -5,15 +5,6 @@ from .models import Task
 from .forms import TaskForm
 
 
-class IndexView(generic.ListView):
-    template_name = 'tasks/index.html'
-    context_object_name = 'tasks_list'
-
-    def get_queryset(self):
-        """Return the last five published questions."""
-        return Task.objects.order_by('-time')
-
-
 class CreateTaskView(generic.CreateView):
     form_class = TaskForm
     template_name = 'tasks/new.html'
@@ -35,3 +26,11 @@ class TasksView(generic.CreateView):
         context = super().get_context_data(**kwargs)
         context["tasks_list"] = self.model.objects.order_by('-time')
         return context
+
+
+class DeleteTaskView(generic.DeleteView):
+    model = Task
+    success_url = reverse_lazy('tasks:index')
+
+    def get(self, request, *args, **kwargs):
+        return self.delete(request, *args, **kwargs)
