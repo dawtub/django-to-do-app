@@ -2,14 +2,13 @@
 
 {% block content %}
 <div class="container shadow">
-    <div class="row">
-        <div class="col">
+    <div class="row mt-4">
+        <div class="col my-3">
             <p class="h1 text-center">to-do list</p>
 
-            <form action="" method="post">
+            <form action="{% url 'tasks:add' %}" method="post">
                 <div class="form-row m-1">
                     {% csrf_token %}
-
                     <div class="col-2">
                         {{ form.user }}
                     </div>
@@ -21,25 +20,37 @@
                     </div>
                 </div>
             </form>
-            <ul class="list-group">
+            <ul class="list-group mt-2">
                 {% for task in tasks_list %}
                 {% if task.is_done %}
                 <li class="list-group-item d-flex align-items-center justify-content-between complete">
                     {{ task.text }}
-                    <a href="{% url 'tasks:delete' task.id %}">
-                    <span class="btn btn-xs btn-default float-right">
-                        <span class="fas fa-trash-alt " aria-hidden="true"></span>
-                    </span>
-                    </a>
+                    <div>
+                        <span class="btn btn-xs btn-default">
+                            <span class="far fa-check-square" aria-hidden="true"></span>
+                        </span>
+                        <a href="{% url 'tasks:delete' task.id %}">
+                            <span class="btn btn-xs btn-default float-right">
+                                <span class="fas fa-trash-alt " aria-hidden="true"></span>
+                            </span>
+                        </a>
+                    </div>
                 </li>
                 {% else %}
                 <li class="list-group-item d-flex align-items-center justify-content-between">
                     {{ task.text }}
-                    <a href="{% url 'tasks:delete' task.id %}">
-                    <span class="btn btn-xs btn-default" >
-                        <span class="fas fa-trash-alt" aria-hidden="true"></span>
-                    </span>
-                    </a>
+                    <div>
+                        <a href="{% url 'tasks:complete' task.id %}">
+                            <span class="btn btn-xs btn-default">
+                                <span class="far fa-square" aria-hidden="true"></span>
+                            </span>
+                        </a>
+                        <a href="{% url 'tasks:delete' task.id %}">
+                            <span class="btn btn-xs btn-default">
+                                <span class="far fa-trash-alt" aria-hidden="true"></span>
+                            </span>
+                        </a>
+                    </div>
                 </li>
                 {% endif %}
                 {% empty %}
