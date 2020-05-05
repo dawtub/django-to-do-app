@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>to-do list</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'tasks/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'tasks/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'tasks/js/bootstrap.min.js' %}">
+</head>
+<body>
+<div class="container fixed-top shadow bg-white rounded">
+    <div class="row spacer">
+        <div class="col">
+            <h1>to-do list</h1>
+            {% for task in tasks_list %}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input type="checkbox" {% if task.is_done %} checked {% endif %}>
+                    </div>
+                </div>
+                <input type="text" class="form-control"
+                       {% if task.is_done %} disabled {% endif %}
+                       value="{{ task.text }}">
+            </div>
+            {% empty %}
+            <p>No tasks are available.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

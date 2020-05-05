@@ -1,0 +1,9 @@
+.container {
+    position: center;
+    width: 50%
+}
+
+.complete {
+    background-color: lightgray;
+    text-decoration: line-through;
+}
