@@ -14,8 +14,16 @@
 </head>
 <body>
 <div class="container shadow">
-    {% block content %}
-    {% endblock %}
-</div>
+    <div class="row mt-3">
+        <div class="col mt-3">
+            <p class="h1 text-center">TO-DOapp</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
 </body>
 </html>

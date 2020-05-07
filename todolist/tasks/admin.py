@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Task, User
+from .models import Task
 
 
 class TaskInline(admin.TabularInline):
@@ -20,4 +20,3 @@ class TaskAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Task, TaskAdmin)
-admin.site.register(User, UserAdmin)

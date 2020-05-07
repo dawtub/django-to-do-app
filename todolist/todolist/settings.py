@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tasks.apps.TasksConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -123,5 +124,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
+AUTH_USER_MODEL = 'users.CustomUser'
+
 LOGIN_REDIRECT_URL = 'tasks:index'
-LOGOUT_REDIRECT_URL = 'login'
+LOGOUT_REDIRECT_URL = 'users:login'

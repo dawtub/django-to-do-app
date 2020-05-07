@@ -10,18 +10,14 @@ class TaskForm(forms.ModelForm):
 
     class Meta:
         model = Task
-        exclude = ['time', 'completed']
+        exclude = ['user', 'time', 'completed']
         widgets = {
-            'user': forms.Select(attrs={
-                'class': 'form-control',
-            }),
             'text': forms.TextInput(attrs={
                 'class': 'form-control',
                 'type': 'text',
                 'placeholder': 'What u want to do?',
             })
         }
-        labels={
-            'user': '',
+        labels = {
             'text': '',
         }
